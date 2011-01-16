@@ -15,21 +15,16 @@
 	double fadeOutTime;
 	
 	Boolean useHotKey;
-	Boolean isAltKey;
-	Boolean isCmdKey;
-	Boolean isCtrlKey;
-	Boolean isShiftKey;
-	UInt32 keyCode;
-	
+	NSInteger keyCode;
+	NSUInteger modifierFlags;
 }
-/*
 @property(nonatomic) double fadeInTime;
 @property(nonatomic) double fadeOutTime;
 @property(nonatomic) Boolean useHotKey;
-@property(nonatomic) Boolean isAltKey;
-@property(nonatomic) Boolean isCmdKey;
-@property(nonatomic) Boolean isCtrlKey;
-@property(nonatomic) Boolean isShiftKey;
-@property(nonatomic) UInt32 keyCode;
-*/
+@property(nonatomic) NSInteger keyCode;
+@property(nonatomic) NSUInteger modifierFlags;
+
+- (void)load;
+- (void)save;
+
 @end

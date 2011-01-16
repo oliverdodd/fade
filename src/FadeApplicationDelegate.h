@@ -9,14 +9,22 @@
 
 #import <Cocoa/Cocoa.h>
 #import "iTunesController.h"
+#import "PreferencesController.h"
+#import "FadePreferences.h"
+#import "FadePreferencesDelegate.h"
+#import "FadeHotKeyService.h"
 
-@interface FadeApplicationDelegate : NSObject<NSApplicationDelegate> {
+@interface FadeApplicationDelegate : NSObject<NSApplicationDelegate,FadePreferencesDelegate,FadeHotKeyService> {
 	IBOutlet NSMenu *menu;
 	IBOutlet NSMenuItem *fadeItem;
+	
+	PreferencesController *preferencesController;
+	FadePreferences *preferences;
 }
 @property(nonatomic,retain) NSMenu *menu;
 @property(nonatomic,retain) NSMenuItem *fadeItem;
 
 -(IBAction)toggleFade:(id)sender;
+-(IBAction)openPreferences:(id)sender;
 
 @end

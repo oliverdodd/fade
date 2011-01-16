@@ -61,6 +61,8 @@
 		C493DAE212D40B3D009EB7BC /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = src/PreferencesController.h; sourceTree = "<group>"; };
 		C493DAE312D40B3D009EB7BC /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = src/PreferencesController.m; sourceTree = "<group>"; };
 		C493DB8512D411B3009EB7BC /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShortcutRecorder.framework; path = lib/ShortcutRecorder.framework; sourceTree = "<group>"; };
+		C493DD3812E29095009EB7BC /* FadePreferencesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadePreferencesDelegate.h; sourceTree = "<group>"; };
+		C493DDB112E2A11A009EB7BC /* FadeHotKeyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeHotKeyService.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,8 @@
 				C493DAE012D40B3D009EB7BC /* iTunesController.m */,
 				C493DAE212D40B3D009EB7BC /* PreferencesController.h */,
 				C493DAE312D40B3D009EB7BC /* PreferencesController.m */,
+				C493DD3812E29095009EB7BC /* FadePreferencesDelegate.h */,
+				C493DDB112E2A11A009EB7BC /* FadeHotKeyService.h */,
 			);
 			name = Classes;
 			path = ..;

@@ -17,8 +17,6 @@
 -(void)updateFadeItem;
 -(void)registerHotkeys;
 
-+(void)hotkeyToggleFade;
-
 @end
 
 static iTunesController *gctrl = nil;
@@ -37,9 +35,14 @@ NSStatusItem *statusItem;
 -(void)applicationDidFinishLaunching:(NSNotification *)notification {
 	ctrl = [[iTunesController alloc] init];
 	gctrl = ctrl;
+	preferences = [[FadePreferences alloc] init];
 	[self showStatusMenu];
 	[self updateFadeItem];
-	[self registerHotkeys];
+	[self preferencesDidUpdate:self];
+}
+
+-(void)applicationWillTerminate:(NSNotification *)notification {
+	[self unregisterHotKey];
 }
 
 -(void)menuWillOpen:(NSMenu *)theMenu {
@@ -54,10 +57,65 @@ NSStatusItem *statusItem;
 	[gctrl fadeToggle];
 }
 
+-(IBAction)openPreferences:(id)sender {
+	if (preferencesController == nil) {
+		preferencesController = [[PreferencesController alloc] initWithPreferences:preferences delegate:self];
+	}
+	[preferencesController showWindow:sender];
+	NSWindow *window = [preferencesController window];
+	[window makeKeyAndOrderFront:self];
+	(void)sender;
+}
+
+-(void)preferencesDidUpdate:(id)sender {
+	// fade
+	[ctrl setFadeInTime:preferences.fadeInTime];
+	[ctrl setFadeOutTime:preferences.fadeOutTime];
+	// hotkey
+	[self unregisterHotKey];
+	if (preferences.useHotKey && preferences.keyCode > 0 && preferences.modifierFlags >= 0) {
+		[self registerHotKey:preferences.keyCode modifierFlags:preferences.modifierFlags];
+	}
+}
+
 /*-----------------------------------------------------------------------------\
- |	private
+ |	hotkey
  \----------------------------------------------------------------------------*/
-#pragma mark private
+#pragma mark hotkey
+
+OSType fhkSignature = 'fhk1';
+OSType fhkId = 1;
+EventHandlerRef ehRef;
+EventHotKeyRef hkRef;
+
+static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void *userData) {
+	[FadeApplicationDelegate hotkeyToggleFade];
+	return noErr;
+}
+
+-(void)registerHotKey:(NSInteger)keyCode modifierFlags:(NSUInteger)modifierFlags {
+	//Register the Hotkey
+	EventTypeSpec eventType;
+	eventType.eventClass=kEventClassKeyboard;
+	eventType.eventKind=kEventHotKeyPressed;
+	EventHotKeyID hkID;
+	hkID.signature = fhkSignature;
+	hkID.id = fhkId;
+	
+	InstallEventHandler(GetApplicationEventTarget(), &hotKeyHandler, 1, &eventType, NULL, &ehRef);
+	RegisterEventHotKey(keyCode, modifierFlags, hkID, GetApplicationEventTarget(), 0, &hkRef);
+}
+
+-(void)unregisterHotKey {
+	UnregisterEventHotKey(hkRef);
+	RemoveEventHandler(ehRef);
+}
+
+
+/*-----------------------------------------------------------------------------\
+ |	status menu
+ \----------------------------------------------------------------------------*/
+#pragma mark status menu
 
 -(void)showStatusMenu {
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
@@ -75,26 +133,6 @@ NSStatusItem *statusItem;
 							: @"Fade In")];
 }
 
-OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void *userData) {
-	[FadeApplicationDelegate hotkeyToggleFade];
-	return noErr;
-}
-
--(void)registerHotkeys {
-	//Register the Hotkeys
-	EventHotKeyRef hkRef;
-	EventTypeSpec eventType;
-	eventType.eventClass=kEventClassKeyboard;
-	eventType.eventKind=kEventHotKeyPressed;
-	EventHotKeyID hkID;
-	hkID.signature='fhk1';
-	hkID.id=1;
-		
-	InstallApplicationEventHandler(&hotKeyHandler,1,&eventType,NULL,NULL);
-	
-	RegisterEventHotKey(49, cmdKey+optionKey+controlKey, hkID, GetApplicationEventTarget(), 0, &hkRef);
-}
-
 /*-----------------------------------------------------------------------------\
  |	dealloc
  \----------------------------------------------------------------------------*/
@@ -103,6 +141,7 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, void 
 -(void)dealloc {
 	[ctrl release];
 	[statusItem release];
+	[preferences release];
 	[super dealloc];
 }
 

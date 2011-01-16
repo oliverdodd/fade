@@ -14,6 +14,7 @@
 -(void)fade:(NSNumber *)d;
 -(void)cancelFade;
 -(void)preFade;
+-(int)calculateDelta:(double)time;
 
 @end
 
@@ -29,7 +30,11 @@ const int MIN_VOL = 0;
 const int MAX_VOL = 100;
 
 NSTimeInterval timeInterval = .05;
-int deltaVolume = 10;
+int deltaVolumeIn = 10;
+int deltaVolumeOut = 10;
+
+double fadeInTime = .5;
+double fadeOutTime = .5;
 
 int originalVolume;
 BOOL isFading = NO;
@@ -98,12 +103,13 @@ iTunesApplication *iTunes;
 	int d = fadeDirection.intValue;
 	int v = [self volume];
     
-    if (v == 0) {
+	if (v == 0) {
         [self playPause];
     }
     
     if ((d > 0 && v < originalVolume) || (d < 0 && v != 0)) {
 		NSLog(@"%d",v);
+		int deltaVolume = d > 0 ? deltaVolumeIn : deltaVolumeOut;
 		[self setVolume:(v + d * deltaVolume)];
 		[self performSelector:@selector(fade:) withObject:fadeDirection afterDelay:timeInterval]; 
     } else {
@@ -118,9 +124,29 @@ iTunesApplication *iTunes;
 }
 
 -(void)preFade {
-	if (!isFading)
+	if (!isFading) {
 		originalVolume = [self volume];
+		deltaVolumeIn = [self calculateDelta:fadeInTime];
+		deltaVolumeOut = [self calculateDelta:fadeOutTime];
+	}
 	[self cancelFade];
+}
+
+-(int)calculateDelta:(double)time {
+	if (time <= 0) {
+		return MAX_VOL;
+	} else {
+		double units = time / timeInterval;
+		return ceil(originalVolume/units);
+	}
+}
+
+-(void)setFadeInTime:(double)time {
+	fadeInTime = time;
+}
+
+-(void)setFadeOutTime:(double)time {
+	fadeOutTime = time;
 }
 
 @end

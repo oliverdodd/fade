@@ -25,6 +25,8 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>LSBackgroundOnly</key>
+	<false/>
+	<key>LSUIElement</key>
 	<true/>
 </dict>
 </plist>

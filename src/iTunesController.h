@@ -24,4 +24,7 @@
 -(void)fadeOut;
 -(void)fadeToggle;
 
+-(void)setFadeInTime:(double)fadeInTime;
+-(void)setFadeOutTime:(double)fadeOutTime;
+
 @end

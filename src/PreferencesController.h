@@ -8,10 +8,35 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ShortcutRecorder/ShortcutRecorder.h>
+#import "FadePreferences.h"
+#import "FadePreferencesDelegate.h"
 
 
 @interface PreferencesController : NSWindowController {
+	IBOutlet NSSlider *fadeInSlider;
+	IBOutlet NSSlider *fadeOutSlider;
 	
+	IBOutlet NSTextField *fadeInLabel;
+	IBOutlet NSTextField *fadeOutLabel;
+	
+	IBOutlet NSButton *enableShortcutButton;
+	IBOutlet SRRecorderControl *shortcutRecorder;
+	
+	FadePreferences *preferences;
+	id<FadePreferencesDelegate> preferencesDelegate;
 }
+@property(nonatomic, retain) FadePreferences *preferences;
+@property(nonatomic,retain) NSSlider *fadeInSlider;
+@property(nonatomic,retain) NSSlider *fadeOutSlider;
+@property(nonatomic,retain) NSTextField *fadeInLabel;
+@property(nonatomic,retain) NSTextField *fadeOutLabel;
+@property(nonatomic,retain) NSButton *enableShortcutButton;
+@property(nonatomic,retain) SRRecorderControl *shortcutRecorder;
+
+- (id)initWithPreferences:(FadePreferences *)prefs delegate:(id<FadePreferencesDelegate>)delegate;
+
+- (IBAction)performOk:(id)sender;
+- (IBAction)performCancel:(id)sender;
 
 @end
