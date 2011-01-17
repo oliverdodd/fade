@@ -18,6 +18,9 @@
 	IBOutlet NSMenu *menu;
 	IBOutlet NSMenuItem *fadeItem;
 	
+	NSImage *statusImage;
+	NSImage *statusHighlightImage;
+	
 	PreferencesController *preferencesController;
 	FadePreferences *preferences;
 }

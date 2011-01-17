@@ -21,6 +21,11 @@
 		C493DAE812D40B3D009EB7BC /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C493DAE312D40B3D009EB7BC /* PreferencesController.m */; };
 		C493DB8612D411B3009EB7BC /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C493DB8512D411B3009EB7BC /* ShortcutRecorder.framework */; };
 		C493DBB312D414C0009EB7BC /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C493DB8512D411B3009EB7BC /* ShortcutRecorder.framework */; };
+		C493DE7712E37AA7009EB7BC /* fader_menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C493DE7312E37AA7009EB7BC /* fader_menu_icon.png */; };
+		C493DE7812E37AA7009EB7BC /* fader_menu_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = C493DE7412E37AA7009EB7BC /* fader_menu_icon2.png */; };
+		C493DE7912E37AA7009EB7BC /* fader_sound_volume.png in Resources */ = {isa = PBXBuildFile; fileRef = C493DE7512E37AA7009EB7BC /* fader_sound_volume.png */; };
+		C493DE7A12E37AA7009EB7BC /* fader_sound_volume2.png in Resources */ = {isa = PBXBuildFile; fileRef = C493DE7612E37AA7009EB7BC /* fader_sound_volume2.png */; };
+		C4CBF0D712E3E11000FFDFA7 /* fade.icns in Resources */ = {isa = PBXBuildFile; fileRef = C4CBF0D612E3E11000FFDFA7 /* fade.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +68,11 @@
 		C493DB8512D411B3009EB7BC /* ShortcutRecorder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShortcutRecorder.framework; path = lib/ShortcutRecorder.framework; sourceTree = "<group>"; };
 		C493DD3812E29095009EB7BC /* FadePreferencesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadePreferencesDelegate.h; sourceTree = "<group>"; };
 		C493DDB112E2A11A009EB7BC /* FadeHotKeyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeHotKeyService.h; sourceTree = "<group>"; };
+		C493DE7312E37AA7009EB7BC /* fader_menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_menu_icon.png; sourceTree = "<group>"; };
+		C493DE7412E37AA7009EB7BC /* fader_menu_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_menu_icon2.png; sourceTree = "<group>"; };
+		C493DE7512E37AA7009EB7BC /* fader_sound_volume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_sound_volume.png; sourceTree = "<group>"; };
+		C493DE7612E37AA7009EB7BC /* fader_sound_volume2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_sound_volume2.png; sourceTree = "<group>"; };
+		C4CBF0D612E3E11000FFDFA7 /* fade.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = fade.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +150,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C493DE7212E37AA7009EB7BC /* img */,
 				C493D7BE12D164CE009EB7BC /* Credits.rtf */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -176,6 +187,18 @@
 				C493DB8512D411B3009EB7BC /* ShortcutRecorder.framework */,
 			);
 			name = "Bundled Frameworks";
+			sourceTree = "<group>";
+		};
+		C493DE7212E37AA7009EB7BC /* img */ = {
+			isa = PBXGroup;
+			children = (
+				C4CBF0D612E3E11000FFDFA7 /* fade.icns */,
+				C493DE7312E37AA7009EB7BC /* fader_menu_icon.png */,
+				C493DE7412E37AA7009EB7BC /* fader_menu_icon2.png */,
+				C493DE7512E37AA7009EB7BC /* fader_sound_volume.png */,
+				C493DE7612E37AA7009EB7BC /* fader_sound_volume2.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +252,11 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				C493D7C012D164CE009EB7BC /* Credits.rtf in Resources */,
 				C493DA1712D2D338009EB7BC /* Preferences.nib in Resources */,
+				C493DE7712E37AA7009EB7BC /* fader_menu_icon.png in Resources */,
+				C493DE7812E37AA7009EB7BC /* fader_menu_icon2.png in Resources */,
+				C493DE7912E37AA7009EB7BC /* fader_sound_volume.png in Resources */,
+				C493DE7A12E37AA7009EB7BC /* fader_sound_volume2.png in Resources */,
+				C4CBF0D712E3E11000FFDFA7 /* fade.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

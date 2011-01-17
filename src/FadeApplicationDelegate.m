@@ -120,9 +120,15 @@ static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent
 -(void)showStatusMenu {
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
 	
-    statusItem = [[statusBar statusItemWithLength:NSVariableStatusItemLength] retain];
+    NSBundle *bundle = [NSBundle mainBundle];
+	statusImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"fader_sound_volume" ofType:@"png"]];
+	statusHighlightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"fader_sound_volume2" ofType:@"png"]];
 	
-    [statusItem setTitle: NSLocalizedString(@"f",@"")];
+	statusItem = [[statusBar statusItemWithLength:NSVariableStatusItemLength] retain];
+	
+	[statusItem setImage:statusImage];
+	[statusItem setAlternateImage:statusHighlightImage];
+    //[statusItem setTitle: NSLocalizedString(@"f",@"")];
     [statusItem setHighlightMode:YES];
     [statusItem setMenu:menu];
 }
