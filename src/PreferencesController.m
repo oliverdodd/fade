@@ -9,6 +9,12 @@
 
 #import "PreferencesController.h"
 
+@interface PreferencesController (Private)
+
+-(void)updateInputFields;
+
+@end
+
 @implementation PreferencesController
 @synthesize fadeInSlider, fadeOutSlider, fadeInLabel, fadeOutLabel, 
 	enableShortcutButton, shortcutRecorder;
@@ -32,8 +38,12 @@
 	return preferences;
 }
 
-- (void) setPreferences:(FadePreferences *) prefs {
+- (void)setPreferences:(FadePreferences *) prefs {
 	preferences = prefs;
+	[self updateInputFields];
+}
+
+-(void)updateInputFields {
 	[self.fadeInSlider setDoubleValue:preferences.fadeInTime];
 	[self.fadeInLabel setDoubleValue:preferences.fadeInTime];
 	[self.fadeOutSlider setDoubleValue:preferences.fadeOutTime];
@@ -62,6 +72,7 @@
 }
 
 - (IBAction)performCancel:(id)sender {
+	[self updateInputFields];
 	[self close];
 }
 
