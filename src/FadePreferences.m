@@ -18,7 +18,7 @@
 
 
 @implementation FadePreferences
-@synthesize fadeInTime,fadeOutTime, useHotKey, keyCode, modifierFlags;
+@synthesize fadeInTime, fadeOutTime, useHotKey, keyCode, modifierFlags, addLoginItem;
 
 
 - (id)init {
@@ -38,6 +38,7 @@
 			[NSNumber numberWithInteger:49],	@"keyCode",
 			[NSNumber numberWithUnsignedInteger:cmdKey+optionKey+controlKey],
 												@"modifierFlags",
+			[NSNumber numberWithBool:NO],		@"addLoginItem",
 			nil];
 }
 
@@ -48,6 +49,7 @@
 	self.useHotKey = [prefs boolForKey:@"useHotKey"];
 	self.keyCode = [prefs integerForKey:@"keyCode"];
 	self.modifierFlags = (NSUInteger)[prefs integerForKey:@"modifierFlags"];
+	self.addLoginItem = [prefs boolForKey:@"addLoginItem"];
 }
 
 - (void)save {
@@ -57,8 +59,8 @@
 	[prefs setBool:self.useHotKey forKey:@"useHotKey"];
 	[prefs setInteger:self.keyCode forKey:@"keyCode"];
 	[prefs setInteger:(NSInteger)self.modifierFlags forKey:@"modifierFlags"];
+	[prefs setBool:self.addLoginItem forKey:@"addLoginItem"];
 	[prefs synchronize];
 }
-
 
 @end

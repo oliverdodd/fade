@@ -9,6 +9,7 @@
 
 #import "FadeApplicationDelegate.h"
 #import <Carbon/Carbon.h>
+#import <ShortcutRecorder/SRCommon.h>
 
 
 @interface FadeApplicationDelegate(Private)
@@ -75,6 +76,15 @@ NSStatusItem *statusItem;
 	[self unregisterHotKey];
 	if (preferences.useHotKey && preferences.keyCode > 0 && preferences.modifierFlags >= 0) {
 		[self registerHotKey:preferences.keyCode modifierFlags:preferences.modifierFlags];
+		
+		[fadeItem setKeyEquivalent:SRCharacterForKeyCodeAndCocoaFlags(preferences.keyCode, preferences.modifierFlags)];
+		[fadeItem setKeyEquivalentModifierMask:SRCarbonToCocoaFlags(preferences.modifierFlags)];
+	}
+	// login item
+	if (preferences.addLoginItem) {
+		[self addLoginItem];
+	} else {
+		[self removeLoginItem];
 	}
 }
 
@@ -137,6 +147,56 @@ static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent
 	[fadeItem setTitle:([ctrl isPlaying]
 							? @"Fade Out"
 							: @"Fade In")];
+}
+
+/*-----------------------------------------------------------------------------\
+ |	login item (http://cocoatutorial.grapewave.com/tag/lssharedfilelist-h/)
+ \----------------------------------------------------------------------------*/
+#pragma mark login item
+
+-(void) addLoginItem {
+	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]; 
+	
+	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
+															kLSSharedFileListSessionLoginItems,
+															NULL);
+	if (loginItems) {
+		LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems,
+																	 kLSSharedFileListItemLast,
+																	 NULL, NULL,url, NULL, NULL);
+		if (item){
+			CFRelease(item);
+		}
+	}	
+	
+	CFRelease(loginItems);
+}
+
+-(void) removeLoginItem {
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:path]; 
+	
+	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
+															kLSSharedFileListSessionLoginItems,
+															NULL);
+	if (loginItems) {
+		UInt32 seed;
+		NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginItems, &seed);
+		
+		int i = 0;
+		for(i; i< [loginItemsArray count]; i++){
+			LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray
+																		objectAtIndex:i];
+			
+			if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &url, NULL) == noErr) {
+				NSString * urlPath = [(NSURL*)url path];
+				if ([urlPath compare:path] == NSOrderedSame){
+					LSSharedFileListItemRemove(loginItems,itemRef);
+				}
+			}
+		}
+		[loginItemsArray release];
+	}
 }
 
 /*-----------------------------------------------------------------------------\

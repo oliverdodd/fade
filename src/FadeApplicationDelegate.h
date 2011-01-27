@@ -13,8 +13,12 @@
 #import "FadePreferences.h"
 #import "FadePreferencesDelegate.h"
 #import "FadeHotKeyService.h"
+#import "FadeLoginItemService.h"
 
-@interface FadeApplicationDelegate : NSObject<NSApplicationDelegate,FadePreferencesDelegate,FadeHotKeyService> {
+@interface FadeApplicationDelegate : NSObject<NSApplicationDelegate,
+											  FadePreferencesDelegate,
+											  FadeHotKeyService,
+											  FadeLoginItemService> {
 	IBOutlet NSMenu *menu;
 	IBOutlet NSMenuItem *fadeItem;
 	

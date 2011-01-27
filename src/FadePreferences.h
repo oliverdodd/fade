@@ -17,12 +17,15 @@
 	Boolean useHotKey;
 	NSInteger keyCode;
 	NSUInteger modifierFlags;
+	
+	Boolean addLoginItem;
 }
 @property(nonatomic) double fadeInTime;
 @property(nonatomic) double fadeOutTime;
 @property(nonatomic) Boolean useHotKey;
 @property(nonatomic) NSInteger keyCode;
 @property(nonatomic) NSUInteger modifierFlags;
+@property(nonatomic) Boolean addLoginItem;
 
 - (void)load;
 - (void)save;

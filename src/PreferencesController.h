@@ -23,6 +23,8 @@
 	IBOutlet NSButton *enableShortcutButton;
 	IBOutlet SRRecorderControl *shortcutRecorder;
 	
+	IBOutlet NSButton *addLoginItemButton;
+	
 	FadePreferences *preferences;
 	id<FadePreferencesDelegate> preferencesDelegate;
 }
@@ -33,6 +35,7 @@
 @property(nonatomic,retain) NSTextField *fadeOutLabel;
 @property(nonatomic,retain) NSButton *enableShortcutButton;
 @property(nonatomic,retain) SRRecorderControl *shortcutRecorder;
+@property(nonatomic,retain) NSButton *addLoginItemButton;
 
 - (id)initWithPreferences:(FadePreferences *)prefs delegate:(id<FadePreferencesDelegate>)delegate;
 

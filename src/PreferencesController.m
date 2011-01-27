@@ -17,7 +17,7 @@
 
 @implementation PreferencesController
 @synthesize fadeInSlider, fadeOutSlider, fadeInLabel, fadeOutLabel, 
-	enableShortcutButton, shortcutRecorder;
+	enableShortcutButton, shortcutRecorder, addLoginItemButton;
 
 - (id)initWithPreferences:(FadePreferences *)prefs delegate:(id<FadePreferencesDelegate>)delegate {
 	self = [self initWithWindowNibName:@"Preferences"];
@@ -49,9 +49,12 @@
 	[self.fadeOutSlider setDoubleValue:preferences.fadeOutTime];
 	[self.fadeOutLabel setDoubleValue:preferences.fadeOutTime];
 	
+	[self.enableShortcutButton setState:(preferences.useHotKey ? NSOnState : NSOffState)];
 	KeyCombo keyCombo;
 	keyCombo.code = preferences.keyCode;
-	keyCombo.flags = [shortcutRecorder carbonToCocoaFlags: preferences.modifierFlags];
+	keyCombo.flags = [shortcutRecorder carbonToCocoaFlags:preferences.modifierFlags];
+	
+	[self.addLoginItemButton setState:(preferences.addLoginItem ? NSOnState : NSOffState)];
 	
 	[self.shortcutRecorder setKeyCombo:keyCombo];
 }
@@ -64,6 +67,8 @@
 	KeyCombo keyCombo = [self.shortcutRecorder keyCombo];
 	preferences.keyCode = keyCombo.code;
 	preferences.modifierFlags = [shortcutRecorder cocoaToCarbonFlags: keyCombo.flags];
+	
+	preferences.addLoginItem = [self.addLoginItemButton  state] == NSOnState ? YES : NO;
 	
 	[preferences save];
 	[preferencesDelegate preferencesDidUpdate:self];

@@ -50,6 +50,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* fade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fade.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C443107512F1179A00CC59E2 /* FadeLoginItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeLoginItemService.h; sourceTree = "<group>"; };
 		C493D6FE12D0F882009EB7BC /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		C493D7BF12D164CE009EB7BC /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		C493D9A112D16F8F009EB7BC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -103,6 +104,7 @@
 				C493DAE312D40B3D009EB7BC /* PreferencesController.m */,
 				C493DD3812E29095009EB7BC /* FadePreferencesDelegate.h */,
 				C493DDB112E2A11A009EB7BC /* FadeHotKeyService.h */,
+				C443107512F1179A00CC59E2 /* FadeLoginItemService.h */,
 			);
 			name = Classes;
 			path = ..;
