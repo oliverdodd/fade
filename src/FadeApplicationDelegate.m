@@ -64,8 +64,7 @@ NSStatusItem *statusItem;
 	}
 	[preferencesController showWindow:sender];
 	NSWindow *window = [preferencesController window];
-	[window makeKeyAndOrderFront:self];
-	(void)sender;
+	[window orderFront:sender];
 }
 
 -(void)preferencesDidUpdate:(id)sender {
