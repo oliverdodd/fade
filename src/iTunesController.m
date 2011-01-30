@@ -65,7 +65,11 @@ iTunesApplication *iTunes;
 }
 
 -(bool)isPlaying {
-	return [iTunes isRunning] && ([iTunes playerState] == iTunesEPlSPlaying);
+	return [iTunes playerState] == iTunesEPlSPlaying;
+}
+
+-(bool)isRunning {
+	return [iTunes isRunning];
 }
 
 -(int)volume {

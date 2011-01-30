@@ -55,7 +55,10 @@ NSStatusItem *statusItem;
 }
 
 +(void)hotkeyToggleFade {
-	[gctrl fadeToggle];
+	// Ignore if iTunes is not running.  This is an application level decision,
+	// the control will open iTunes and fade in if iTunes is not running.
+	if ([gctrl isRunning])
+		[gctrl fadeToggle];
 }
 
 -(IBAction)openPreferences:(id)sender {
@@ -140,12 +143,15 @@ static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent
     //[statusItem setTitle: NSLocalizedString(@"f",@"")];
     [statusItem setHighlightMode:YES];
     [statusItem setMenu:menu];
+	
+	[menu setAutoenablesItems:NO];
 }
 						
 -(void)updateFadeItem {
-	[fadeItem setTitle:([ctrl isPlaying]
-							? @"Fade Out"
-							: @"Fade In")];
+	[fadeItem setTitle:(![ctrl isRunning] || ![ctrl isPlaying]
+						? @"Fade In"
+						: @"Fade Out")];
+	[fadeItem setEnabled:[ctrl isRunning]];
 }
 
 /*-----------------------------------------------------------------------------\

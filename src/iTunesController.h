@@ -18,6 +18,7 @@
 
 -(void)playPause;
 -(bool)isPlaying;
+-(bool)isRunning;
 
 
 -(void)fadeIn;
