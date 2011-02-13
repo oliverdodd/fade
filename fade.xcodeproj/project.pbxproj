@@ -50,7 +50,9 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* fade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fade.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C443107512F1179A00CC59E2 /* FadeLoginItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeLoginItemService.h; sourceTree = "<group>"; };
+		C420713A1308125A003A9CCF /* FadeHotKeyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeHotKeyService.h; sourceTree = "<group>"; };
+		C420713B1308125A003A9CCF /* FadeLoginItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeLoginItemService.h; sourceTree = "<group>"; };
+		C420713C1308125A003A9CCF /* FadePreferencesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadePreferencesDelegate.h; sourceTree = "<group>"; };
 		C493D6FE12D0F882009EB7BC /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		C493D7BF12D164CE009EB7BC /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		C493D9A112D16F8F009EB7BC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -66,8 +68,6 @@
 		C493DAE112D40B3D009EB7BC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C493DAE212D40B3D009EB7BC /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = src/PreferencesController.h; sourceTree = "<group>"; };
 		C493DAE312D40B3D009EB7BC /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = src/PreferencesController.m; sourceTree = "<group>"; };
-		C493DD3812E29095009EB7BC /* FadePreferencesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadePreferencesDelegate.h; sourceTree = "<group>"; };
-		C493DDB112E2A11A009EB7BC /* FadeHotKeyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeHotKeyService.h; sourceTree = "<group>"; };
 		C493DE7312E37AA7009EB7BC /* fader_menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_menu_icon.png; sourceTree = "<group>"; };
 		C493DE7412E37AA7009EB7BC /* fader_menu_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_menu_icon2.png; sourceTree = "<group>"; };
 		C493DE7512E37AA7009EB7BC /* fader_sound_volume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fader_sound_volume.png; sourceTree = "<group>"; };
@@ -102,9 +102,6 @@
 				C493DAE012D40B3D009EB7BC /* iTunesController.m */,
 				C493DAE212D40B3D009EB7BC /* PreferencesController.h */,
 				C493DAE312D40B3D009EB7BC /* PreferencesController.m */,
-				C493DD3812E29095009EB7BC /* FadePreferencesDelegate.h */,
-				C493DDB112E2A11A009EB7BC /* FadeHotKeyService.h */,
-				C443107512F1179A00CC59E2 /* FadeLoginItemService.h */,
 			);
 			name = Classes;
 			path = ..;
@@ -172,9 +169,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C42071361308121E003A9CCF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C420713A1308125A003A9CCF /* FadeHotKeyService.h */,
+				C420713B1308125A003A9CCF /* FadeLoginItemService.h */,
+				C420713C1308125A003A9CCF /* FadePreferencesDelegate.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		C493DAD812D40B3D009EB7BC /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C42071361308121E003A9CCF /* Protocols */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				C493DAD912D40B3D009EB7BC /* fade_Prefix.pch */,
 				C493DADE12D40B3D009EB7BC /* iTunes.h */,
