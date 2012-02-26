@@ -10,6 +10,7 @@
 #import "FadeApplicationDelegate.h"
 #import <Carbon/Carbon.h>
 #import <ShortcutRecorder/SRCommon.h>
+#import "NSTask+LaunchSynchronous.h"
 
 
 @interface FadeApplicationDelegate(Private)
@@ -17,6 +18,7 @@
 -(void)showStatusMenu;
 -(void)updateFadeItem;
 -(void)registerHotkeys;
+-(void)getOpenFiles;
 
 @end
 
@@ -48,6 +50,8 @@ NSStatusItem *statusItem;
 
 -(void)menuWillOpen:(NSMenu *)theMenu {
 	[self updateFadeItem];
+	//[self getConnectedUsers];
+	//[self getOpenFiles];
 }
 
 -(IBAction)toggleFade:(id)sender {
@@ -172,9 +176,8 @@ static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent
 		if (item){
 			CFRelease(item);
 		}
+		CFRelease(loginItems);
 	}	
-	
-	CFRelease(loginItems);
 }
 
 -(void) removeLoginItem {
@@ -202,6 +205,36 @@ static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent
 		}
 		[loginItemsArray release];
 	}
+}
+
+/*-----------------------------------------------------------------------------\
+ |	connected users
+ \----------------------------------------------------------------------------*/
+
+-(void) getConnectedUsers {
+	NSTask *command = [[NSTask alloc] init];
+	[command setLaunchPath:@"/bin/sh"];
+	NSArray *args = [NSArray arrayWithObjects:@"-c", @"/usr/sbin/netstat | grep -e daap", nil];
+	[command setArguments:args];
+	NSLog(@"%@",[command launchSynchronous]);
+	[command release];
+}
+
+-(void) getOpenFiles {
+	NSTask *command = [[NSTask alloc] init];
+	[command setLaunchPath:@"/bin/sh"];
+	NSString *cmd = @"/usr/sbin/lsof -c iTunes | grep";
+	NSArray *exts = [NSArray arrayWithObjects:@"aac",@"aif",@"aiff",@"m4a",@"m4b",@"m4p",@"m4v",@"mp3",@"mp4",@"wav",nil];
+	for (id ext in exts) {
+		cmd = [NSString stringWithFormat:@"%@ -e %@", cmd, ext];
+	}
+	NSMutableArray *args = [NSMutableArray arrayWithObjects:@"-c", cmd, nil];
+	[command setArguments:args];
+	NSLog(@"%@",[command launchSynchronous]);
+	[command release];
+	
+	iTunesFileTrack *ft = [[gctrl currentTrack] get];
+	NSLog(@"%@", ft.location);
 }
 
 /*-----------------------------------------------------------------------------\

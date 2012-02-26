@@ -47,13 +47,16 @@ iTunesApplication *iTunes;
 #pragma mark init
 
 -(id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
 		originalVolume = MAX_VOL;
 	}
 	return self;
 }
 
+-(iTunesTrack *)currentTrack {
+	return iTunes.currentTrack;
+}
 
 /*-----------------------------------------------------------------------------\
  |	controls
@@ -112,7 +115,7 @@ iTunesApplication *iTunes;
     }
     
     if ((d > 0 && v < originalVolume) || (d < 0 && v != 0)) {
-		NSLog(@"%d",v);
+		//NSLog(@"%d",v);
 		int deltaVolume = d > 0 ? deltaVolumeIn : deltaVolumeOut;
 		[self setVolume:(v + d * deltaVolume)];
 		[self performSelector:@selector(fade:) withObject:fadeDirection afterDelay:timeInterval]; 

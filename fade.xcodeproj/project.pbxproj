@@ -12,6 +12,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C443103612EBC9CB00CC59E2 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4CBF0F912EB911900FFDFA7 /* ShortcutRecorder.framework */; };
 		C443103F12F1137D00CC59E2 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CBF0F912EB911900FFDFA7 /* ShortcutRecorder.framework */; };
+		C493342813C293010074657E /* NSTask+LaunchSynchronous.m in Sources */ = {isa = PBXBuildFile; fileRef = C493342713C293010074657E /* NSTask+LaunchSynchronous.m */; };
 		C493D6FF12D0F882009EB7BC /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C493D6FE12D0F882009EB7BC /* ScriptingBridge.framework */; };
 		C493D7C012D164CE009EB7BC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C493D7BE12D164CE009EB7BC /* Credits.rtf */; };
 		C493D9A212D16F8F009EB7BC /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C493D9A112D16F8F009EB7BC /* Carbon.framework */; };
@@ -53,6 +54,8 @@
 		C420713A1308125A003A9CCF /* FadeHotKeyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeHotKeyService.h; sourceTree = "<group>"; };
 		C420713B1308125A003A9CCF /* FadeLoginItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeLoginItemService.h; sourceTree = "<group>"; };
 		C420713C1308125A003A9CCF /* FadePreferencesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadePreferencesDelegate.h; sourceTree = "<group>"; };
+		C493342613C293010074657E /* NSTask+LaunchSynchronous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+LaunchSynchronous.h"; sourceTree = "<group>"; };
+		C493342713C293010074657E /* NSTask+LaunchSynchronous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+LaunchSynchronous.m"; sourceTree = "<group>"; };
 		C493D6FE12D0F882009EB7BC /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		C493D7BF12D164CE009EB7BC /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		C493D9A112D16F8F009EB7BC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -179,9 +182,19 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		C493342513C292DE0074657E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C493342613C293010074657E /* NSTask+LaunchSynchronous.h */,
+				C493342713C293010074657E /* NSTask+LaunchSynchronous.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		C493DAD812D40B3D009EB7BC /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C493342513C292DE0074657E /* Util */,
 				C42071361308121E003A9CCF /* Protocols */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				C493DAD912D40B3D009EB7BC /* fade_Prefix.pch */,
@@ -243,7 +256,11 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "fade" */;
 			compatibilityVersion = "Xcode 3.0";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* fade */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -282,6 +299,7 @@
 				C493DAE612D40B3D009EB7BC /* iTunesController.m in Sources */,
 				C493DAE712D40B3D009EB7BC /* main.m in Sources */,
 				C493DAE812D40B3D009EB7BC /* PreferencesController.m in Sources */,
+				C493342813C293010074657E /* NSTask+LaunchSynchronous.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

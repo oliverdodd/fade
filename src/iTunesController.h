@@ -20,6 +20,7 @@
 -(bool)isPlaying;
 -(bool)isRunning;
 
+-(iTunesTrack *)currentTrack;
 
 -(void)fadeIn;
 -(void)fadeOut;
