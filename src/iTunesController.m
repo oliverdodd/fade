@@ -48,10 +48,15 @@ iTunesApplication *iTunes;
 
 -(id)init {
 	if ((self = [super init])) {
-		iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+		iTunes = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"] retain];
 		originalVolume = MAX_VOL;
 	}
 	return self;
+}
+
+-(void)dealloc {
+  [iTunes release];
+  [super dealloc];
 }
 
 -(iTunesTrack *)currentTrack {
@@ -111,18 +116,18 @@ iTunesApplication *iTunes;
 	int v = [self volume];
     
 	if (v == 0) {
-        [self playPause];
-    }
+    [self playPause];
+  }
     
-    if ((d > 0 && v < originalVolume) || (d < 0 && v != 0)) {
-		//NSLog(@"%d",v);
+  if ((d > 0 && v < originalVolume) || (d < 0 && v != 0)) {
+    //NSLog(@"%d",v);
 		int deltaVolume = d > 0 ? deltaVolumeIn : deltaVolumeOut;
 		[self setVolume:(v + d * deltaVolume)];
 		[self performSelector:@selector(fade:) withObject:fadeDirection afterDelay:timeInterval]; 
-    } else {
+  } else {
 		[self setVolume:originalVolume];
 		isFading = NO;
-    }
+  }
 }
 
 -(void)cancelFade {

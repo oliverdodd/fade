@@ -80,7 +80,7 @@ NSStatusItem *statusItem;
 	[ctrl setFadeOutTime:preferences.fadeOutTime];
 	// hotkey
 	[self unregisterHotKey];
-	if (preferences.useHotKey && preferences.keyCode > 0 && preferences.modifierFlags >= 0) {
+	if (preferences.useHotKey && preferences.keyCode > 0 && preferences.modifierFlags > 0) {
 		[self registerHotKey:preferences.keyCode modifierFlags:preferences.modifierFlags];
 		
 		[fadeItem setKeyEquivalent:SRCharacterForKeyCodeAndCocoaFlags(preferences.keyCode, preferences.modifierFlags)];
@@ -191,8 +191,8 @@ static OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent
 		UInt32 seed;
 		NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginItems, &seed);
 		
-		int i = 0;
-		for(i; i< [loginItemsArray count]; i++){
+		int i;
+		for(i = 0; i< [loginItemsArray count]; i++){
 			LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray
 																		objectAtIndex:i];
 			
